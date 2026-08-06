@@ -107,41 +107,41 @@ export default function ContactClient() {
               <span className="mono-label block">Your info</span>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs text-[var(--color-copper-light)] mb-1.5">First name *</label>
-                  <input className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] placeholder-forge-rust focus:border-[var(--color-copper)] outline-none" placeholder="Billy" value={form.first_name} onChange={set("first_name")} required />
+                  <label htmlFor="contact-first-name" className="block text-xs text-[var(--color-copper-light)] mb-1.5">First name *</label>
+                  <input id="contact-first-name" className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] placeholder-forge-rust focus:border-[var(--color-copper)] outline-none" placeholder="Billy" value={form.first_name} onChange={set("first_name")} required />
                 </div>
                 <div>
-                  <label className="block text-xs text-[var(--color-copper-light)] mb-1.5">Last name *</label>
-                  <input className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] placeholder-forge-rust focus:border-[var(--color-copper)] outline-none" placeholder="Showalter" value={form.last_name} onChange={set("last_name")} required />
+                  <label htmlFor="contact-last-name" className="block text-xs text-[var(--color-copper-light)] mb-1.5">Last name *</label>
+                  <input id="contact-last-name" className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] placeholder-forge-rust focus:border-[var(--color-copper)] outline-none" placeholder="Showalter" value={form.last_name} onChange={set("last_name")} required />
                 </div>
               </div>
               <div>
-                <label className="block text-xs text-[var(--color-copper-light)] mb-1.5">Email address *</label>
-                <input type="email" className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] placeholder-forge-rust focus:border-[var(--color-copper)] outline-none" placeholder="you@yourbusiness.com" value={form.email} onChange={set("email")} required />
+                <label htmlFor="contact-email" className="block text-xs text-[var(--color-copper-light)] mb-1.5">Email address *</label>
+                <input id="contact-email" type="email" className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] placeholder-forge-rust focus:border-[var(--color-copper)] outline-none" placeholder="you@yourbusiness.com" value={form.email} onChange={set("email")} required />
               </div>
               <div>
-                <label className="block text-xs text-[var(--color-copper-light)] mb-1.5">Phone number *</label>
-                <input type="tel" className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] placeholder-forge-rust focus:border-[var(--color-copper)] outline-none" placeholder="(812) 562-8504" value={form.phone} onChange={set("phone")} required />
+                <label htmlFor="contact-phone" className="block text-xs text-[var(--color-copper-light)] mb-1.5">Phone number *</label>
+                <input id="contact-phone" type="tel" className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] placeholder-forge-rust focus:border-[var(--color-copper)] outline-none" placeholder="(812) 562-8504" value={form.phone} onChange={set("phone")} required />
               </div>
 
               <hr className="rule" />
               <span className="mono-label block">Your business</span>
 
               <div>
-                <label className="block text-xs text-[var(--color-copper-light)] mb-1.5">Business name</label>
-                <input className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] placeholder-forge-rust focus:border-[var(--color-copper)] outline-none" placeholder="Smith Plumbing Co." value={form.business_name} onChange={set("business_name")} />
+                <label htmlFor="contact-business-name" className="block text-xs text-[var(--color-copper-light)] mb-1.5">Business name</label>
+                <input id="contact-business-name" className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] placeholder-forge-rust focus:border-[var(--color-copper)] outline-none" placeholder="Smith Plumbing Co." value={form.business_name} onChange={set("business_name")} />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs text-[var(--color-copper-light)] mb-1.5">Trade type</label>
-                  <select className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] focus:border-[var(--color-copper)] outline-none" value={form.trade_type} onChange={set("trade_type")}>
+                  <label htmlFor="contact-trade-type" className="block text-xs text-[var(--color-copper-light)] mb-1.5">Trade type</label>
+                  <select id="contact-trade-type" className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] focus:border-[var(--color-copper)] outline-none" value={form.trade_type} onChange={set("trade_type")}>
                     <option value="">Select your trade</option>
                     {trades.map(t => <option key={t}>{t}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label className="block text-xs text-[var(--color-copper-light)] mb-1.5">Service area / city</label>
-                  <input className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] placeholder-forge-rust focus:border-[var(--color-copper)] outline-none" placeholder="Terre Haute, IN" value={form.city} onChange={set("city")} />
+                  <label htmlFor="contact-city" className="block text-xs text-[var(--color-copper-light)] mb-1.5">Service area / city</label>
+                  <input id="contact-city" className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] placeholder-forge-rust focus:border-[var(--color-copper)] outline-none" placeholder="Terre Haute, IN" value={form.city} onChange={set("city")} />
                 </div>
               </div>
 
@@ -149,9 +149,9 @@ export default function ContactClient() {
               <span className="mono-label block">Choose your plan</span>
 
               <div className="flex flex-col gap-2.5">
-                {plans.map(p => (
-                  <label key={p} className={`flex items-center gap-3 p-3 rounded-sm border cursor-pointer transition-colors ${form.plan_interest === p ? "border-[var(--color-copper)] bg-[var(--color-copper)]/5" : "border-[var(--color-forge-border)] hover:border-[var(--color-copper)]/40"}`}>
-                    <input type="radio" name="plan" value={p} checked={form.plan_interest === p} onChange={set("plan_interest")} className="accent-[var(--color-copper)]" />
+                {plans.map((p, i) => (
+                  <label key={p} htmlFor={`contact-plan-${i}`} className={`flex items-center gap-3 p-3 rounded-sm border cursor-pointer transition-colors ${form.plan_interest === p ? "border-[var(--color-copper)] bg-[var(--color-copper)]/5" : "border-[var(--color-forge-border)] hover:border-[var(--color-copper)]/40"}`}>
+                    <input id={`contact-plan-${i}`} type="radio" name="plan" value={p} checked={form.plan_interest === p} onChange={set("plan_interest")} className="accent-[var(--color-copper)]" />
                     <span className="text-sm text-[var(--color-forge-muted)]">{p}</span>
                   </label>
                 ))}
@@ -161,19 +161,19 @@ export default function ContactClient() {
               <span className="mono-label block">Anything else?</span>
 
               <div>
-                <label className="block text-xs text-[var(--color-copper-light)] mb-1.5">Tell us more about your goals</label>
-                <textarea className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] placeholder-forge-rust focus:border-[var(--color-copper)] outline-none resize-none h-24" placeholder="e.g. I'm a plumber in Terre Haute, no website yet, want to start getting leads from Google..." value={form.message} onChange={set("message")} />
+                <label htmlFor="contact-message" className="block text-xs text-[var(--color-copper-light)] mb-1.5">Tell us more about your goals</label>
+                <textarea id="contact-message" className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] placeholder-forge-rust focus:border-[var(--color-copper)] outline-none resize-none h-24" placeholder="e.g. I'm a plumber in Terre Haute, no website yet, want to start getting leads from Google..." value={form.message} onChange={set("message")} />
               </div>
               <div>
-                <label className="block text-xs text-[var(--color-copper-light)] mb-1.5">How did you hear about us?</label>
-                <select className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] focus:border-[var(--color-copper)] outline-none" value={form.source} onChange={set("source")}>
+                <label htmlFor="contact-source" className="block text-xs text-[var(--color-copper-light)] mb-1.5">How did you hear about us?</label>
+                <select id="contact-source" className="w-full bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 text-sm text-[var(--color-bone)] focus:border-[var(--color-copper)] outline-none" value={form.source} onChange={set("source")}>
                   <option value="">Select one</option>
                   {sources.map(s => <option key={s}>{s}</option>)}
                 </select>
               </div>
 
               {/* Honeypot */}
-              <input type="text" name="website_url" value={form.website_url} onChange={set("website_url")} className="hidden" tabIndex={-1} autoComplete="off" />
+              <input id="contact-website-url" type="text" name="website_url" value={form.website_url} onChange={set("website_url")} className="hidden" tabIndex={-1} autoComplete="off" />
 
               {error && <p className="text-sm text-[var(--color-error-red)] bg-error-red/10 border border-error-red/30 rounded-sm px-3 py-2">{error}</p>}
 

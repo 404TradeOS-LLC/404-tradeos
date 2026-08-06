@@ -1,8 +1,22 @@
 import { Resend } from "resend";
 
-export const resend = new Resend(process.env.RESEND_API_KEY);
 export const FROM_EMAIL = process.env.RESEND_FROM ?? "hello@404tradeos.com";
 export const NOTIFY_EMAIL = process.env.CONTACT_NOTIFICATION_EMAIL ?? "billy@404tradeos.com";
+
+let resendClient: Resend | undefined;
+
+// Constructed lazily (and memoized) so importing this module doesn't require
+// RESEND_API_KEY to be present at build time — only when an email is sent.
+function getResend(): Resend {
+  if (!resendClient) {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      throw new Error("getResend() requires RESEND_API_KEY to be set.");
+    }
+    resendClient = new Resend(apiKey);
+  }
+  return resendClient;
+}
 
 export async function sendOwnerNotification(lead: {
   first_name: string;
@@ -15,7 +29,7 @@ export async function sendOwnerNotification(lead: {
   city?: string;
   message?: string;
 }) {
-  return resend.emails.send({
+  return getResend().emails.send({
     from: FROM_EMAIL,
     to: NOTIFY_EMAIL,
     subject: `New lead: ${lead.first_name} ${lead.last_name} — ${lead.trade_type ?? "Trade"} in ${lead.city ?? "Unknown"}`,
@@ -49,7 +63,7 @@ export async function sendCustomerConfirmation(lead: {
   first_name: string;
   email: string;
 }) {
-  return resend.emails.send({
+  return getResend().emails.send({
     from: FROM_EMAIL,
     to: lead.email,
     subject: `Got it, ${lead.first_name} — we'll be in touch within 24 hours`,

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase";
 import { sendOwnerNotification, sendCustomerConfirmation } from "@/lib/resend";
 
 // Simple in-memory rate limit (per-IP, resets on cold start)
@@ -73,9 +73,14 @@ export async function POST(req: NextRequest) {
   };
 
   // Insert to Supabase
-  const { error: dbError } = await supabaseAdmin.from("leads").insert(lead);
-  if (dbError) {
-    console.error("Supabase insert error:", dbError);
+  try {
+    const { error: dbError } = await getSupabaseAdmin().from("leads").insert(lead);
+    if (dbError) {
+      console.error("Supabase insert error:", dbError);
+      return NextResponse.json({ error: "Failed to save your request. Please try again." }, { status: 500 });
+    }
+  } catch (err) {
+    console.error("Supabase client error:", err);
     return NextResponse.json({ error: "Failed to save your request. Please try again." }, { status: 500 });
   }
 
