@@ -97,7 +97,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-[var(--color-forge-border)] px-6 md:px-10 py-4 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
         <p className="text-xs text-[var(--color-forge-rust)] font-mono">
-          © {new Date().getFullYear()} 404 TradeOS — 404tradeos.com
+          © {new Date().getFullYear()} 404 TradeOS LLC — 404tradeos.com
         </p>
         <div className="flex gap-4">
           <Link href="/privacy" className="text-xs text-[var(--color-forge-rust)] hover:text-[var(--color-forge-muted)] transition-colors">Privacy</Link>

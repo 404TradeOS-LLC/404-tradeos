@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Terms of Service",
-  description: "The agreement governing services provided by 404 TradeOS.",
+  description: "The agreement governing services provided by 404 TradeOS LLC.",
 };
 
 const sections = [
@@ -77,7 +77,11 @@ export default function TermsPage() {
       <div className="max-w-3xl mx-auto">
         <span className="sec-label">Legal</span>
         <h1 className="text-4xl font-medium text-[var(--color-bone)] tracking-tight mb-2">Terms of Service</h1>
-        <p className="text-xs text-[var(--color-forge-rust)] font-mono mb-10">Last updated: June 20, 2026</p>
+        <p className="text-xs text-[var(--color-forge-rust)] font-mono mb-6">Last updated: June 20, 2026</p>
+
+        <p className="text-sm text-[var(--color-forge-muted)] leading-relaxed mb-10">
+          These terms are between you and 404 TradeOS LLC (&ldquo;404 TradeOS,&rdquo; &ldquo;we,&rdquo; &ldquo;our&rdquo;). References to &ldquo;404 TradeOS&rdquo; throughout these terms refer to 404 TradeOS LLC.
+        </p>
 
         <div className="card-panel flex flex-col gap-8">
           {sections.map((s) => (

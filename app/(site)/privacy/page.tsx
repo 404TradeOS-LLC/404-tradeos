@@ -1,6 +1,6 @@
 export const metadata = {
   title: "Privacy Policy",
-  description: "How 404 TradeOS collects, stores, and uses your information.",
+  description: "How 404 TradeOS LLC collects, stores, and uses your information.",
 };
 
 const sections = [
@@ -68,7 +68,11 @@ export default function PrivacyPage() {
       <div className="max-w-3xl mx-auto">
         <span className="sec-label">Legal</span>
         <h1 className="text-4xl font-medium text-[var(--color-bone)] tracking-tight mb-2">Privacy Policy</h1>
-        <p className="text-xs text-[var(--color-forge-rust)] font-mono mb-10">Last updated: June 20, 2026</p>
+        <p className="text-xs text-[var(--color-forge-rust)] font-mono mb-6">Last updated: June 20, 2026</p>
+
+        <p className="text-sm text-[var(--color-forge-muted)] leading-relaxed mb-10">
+          This policy is issued by 404 TradeOS LLC (&ldquo;404 TradeOS,&rdquo; &ldquo;we,&rdquo; &ldquo;our&rdquo;). References to &ldquo;404 TradeOS&rdquo; throughout this policy refer to 404 TradeOS LLC.
+        </p>
 
         <div className="card-panel flex flex-col gap-8">
           {sections.map((s) => (
