@@ -3,10 +3,19 @@ import { Resend } from "resend";
 export const FROM_EMAIL = process.env.RESEND_FROM ?? "hello@404tradeos.com";
 export const NOTIFY_EMAIL = process.env.CONTACT_NOTIFICATION_EMAIL ?? "billy@404tradeos.com";
 
-// Constructed lazily so importing this module doesn't require RESEND_API_KEY
-// to be present at build time — only when an email is actually sent.
-function getResend() {
-  return new Resend(process.env.RESEND_API_KEY);
+let resendClient: Resend | undefined;
+
+// Constructed lazily (and memoized) so importing this module doesn't require
+// RESEND_API_KEY to be present at build time — only when an email is sent.
+function getResend(): Resend {
+  if (!resendClient) {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      throw new Error("getResend() requires RESEND_API_KEY to be set.");
+    }
+    resendClient = new Resend(apiKey);
+  }
+  return resendClient;
 }
 
 export async function sendOwnerNotification(lead: {

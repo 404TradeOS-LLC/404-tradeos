@@ -1,13 +1,23 @@
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-// Server-only client — service role key, bypasses RLS. Constructed lazily so
-// importing this module (e.g. for the Lead type) doesn't require Supabase
-// env vars to be present at build time — only when actually called at runtime.
-export function getSupabaseAdmin() {
-  return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  );
+let adminClient: SupabaseClient | undefined;
+
+// Server-only client — service role key, bypasses RLS. Constructed lazily
+// (and memoized) so importing this module (e.g. for the Lead type) doesn't
+// require Supabase env vars to be present at build time — only when actually
+// called at runtime.
+export function getSupabaseAdmin(): SupabaseClient {
+  if (!adminClient) {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!supabaseUrl || !supabaseServiceKey) {
+      throw new Error(
+        "getSupabaseAdmin() requires NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY to be set."
+      );
+    }
+    adminClient = createClient(supabaseUrl, supabaseServiceKey);
+  }
+  return adminClient;
 }
 
 export type Lead = {
