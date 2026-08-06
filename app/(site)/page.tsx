@@ -86,8 +86,12 @@ export default function HomePage() {
                 <span className="text-[var(--color-copper)]">Start getting found.</span>
               </h1>
 
-              <p className="fade-up fade-up-delay-2 text-base md:text-lg text-[var(--color-forge-muted)] leading-relaxed mb-8 max-w-lg">
+              <p className="fade-up fade-up-delay-2 text-base md:text-lg text-[var(--color-forge-muted)] leading-relaxed mb-3 max-w-lg">
                 High-performance websites and digital marketing systems that get trade businesses more calls, more leads, and more jobs.
+              </p>
+
+              <p className="fade-up fade-up-delay-2 text-sm text-[var(--color-forge-rust)] leading-relaxed mb-8 max-w-lg">
+                We design, build, and manage contractor websites and marketing systems, so you can stay focused on running the work.
               </p>
 
               <div className="fade-up fade-up-delay-3 flex flex-wrap gap-3 mb-10">
@@ -173,6 +177,10 @@ export default function HomePage() {
                     ))}
                   </ul>
                 </div>
+              </div>
+
+              <div className="px-4 py-2 border-t border-[var(--color-forge-border)]">
+                <p className="text-[10px] font-mono text-[var(--color-forge-rust)]">Illustrative example — not live customer data.</p>
               </div>
             </div>
           </div>
