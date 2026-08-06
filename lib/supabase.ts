@@ -1,14 +1,14 @@
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-
-// Public client — for browser use (anon key, RLS enforced)
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-// Server client — for API routes only (service key, bypasses RLS)
-export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
+// Server-only client — service role key, bypasses RLS. Constructed lazily so
+// importing this module (e.g. for the Lead type) doesn't require Supabase
+// env vars to be present at build time — only when actually called at runtime.
+export function getSupabaseAdmin() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  );
+}
 
 export type Lead = {
   id: string;
