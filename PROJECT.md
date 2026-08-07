@@ -41,7 +41,9 @@ proxy.ts      # Next 16 middleware — refreshes admin session cookie
 
 ## Environment variables
 
-Six variables total. **None are required to build the site** — all Supabase/Resend clients are constructed lazily at request time (`lib/supabase.ts`, `lib/resend.ts`), not at module load, so `npm run build` and CI succeed with zero env vars configured anywhere.
+Six variables total. **None are required for `npm run build` to succeed** — all Supabase/Resend clients are constructed lazily at request time (`lib/supabase.ts`, `lib/resend.ts`), not at module load, so `npm run build` and CI succeed with zero env vars configured anywhere. That's a distinct question from whether a variable's *value* ends up where it needs to be: the two `NEXT_PUBLIC_*` variables are inlined into the client bundle at build time when present, so they need to be set before a build/deploy (not just "at runtime") to actually reach the browser — changing one in Vercel requires a rebuild to take effect. The four server-only variables are read at request time and don't need a rebuild.
+
+`proxy.ts` (at the repo root) is this project's Next.js 16 middleware — auto-detected by Next.js from its file name/location, not imported anywhere explicitly. This Next.js version renamed `middleware.ts` → `proxy.ts` and the exported function to `proxy` (see `AGENTS.md`); there's no separate `middleware.ts` in this repo. Confirmed wired up: its `config.matcher` scopes it to `/admin/:path*`, and unauthenticated requests to `/admin` correctly 307-redirect to `/admin/login` as a result.
 
 | Variable | Classification | Used by | Required for |
 |---|---|---|---|
