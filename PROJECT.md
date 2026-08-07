@@ -41,15 +41,33 @@ proxy.ts      # Next 16 middleware — refreshes admin session cookie
 
 ## Environment variables
 
-```bash
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=        # server/API only
-RESEND_API_KEY=
-RESEND_FROM=hello@404tradeos.com
-CONTACT_NOTIFICATION_EMAIL=billy@404tradeos.com
-```
-All filled with live values. Resend domain `404tradeos.com` verified.
+Six variables total. **None are required to build the site** — all Supabase/Resend clients are constructed lazily at request time (`lib/supabase.ts`, `lib/resend.ts`), not at module load, so `npm run build` and CI succeed with zero env vars configured anywhere.
+
+| Variable | Classification | Used by | Required for |
+|---|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Public (browser-visible) | `proxy.ts`, `lib/supabase-server.ts`, `lib/supabase-browser.ts` | Admin auth + dashboard |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Public (browser-visible) | same as above | Admin auth + dashboard |
+| `SUPABASE_SERVICE_ROLE_KEY` | Server-only — never prefix `NEXT_PUBLIC_` | `lib/supabase.ts` → `app/api/contact/route.ts` only | Writing leads (bypasses RLS) |
+| `RESEND_API_KEY` | Server-only | `lib/resend.ts` → `app/api/contact/route.ts` only | Lead notification emails |
+| `RESEND_FROM` | Server-only | `lib/resend.ts` | Must be an address on a domain **verified in Resend**, or sending fails |
+| `CONTACT_NOTIFICATION_EMAIL` | Server-only | `lib/resend.ts` | Inbox that receives new-lead emails |
+
+**Local setup:** `cp .env.example .env.local`, fill in real values, never commit it (`.env*` is gitignored except `.env.example`).
+
+**Vercel Production:** configure all six under Settings → Environment Variables → Production. Redeploy after changing any of them (env vars are baked in at build/runtime start, not hot-reloaded).
+
+**Vercel Preview:** do not default to copying Production's `SUPABASE_SERVICE_ROLE_KEY` or `RESEND_API_KEY` into Preview — a preview deployment is reachable by anyone with the URL. Use a separate preview/staging Supabase project and Resend sending config if one exists; otherwise leave Preview unconfigured (the contact form will fail closed with a clean error rather than write to production) until there's an owner-approved preview backend.
+
+**GitHub Actions:** intentionally requires none of these six variables. `.github/workflows/ci.yml` runs `npm ci`, lint, typecheck, and build only — nothing in CI touches Supabase or Resend.
+
+**Supabase project identity:** the correct project is named **"404 TradeOS"** (ref matches `.mcp.json` in this repo) — a separate, distinct Supabase project from `404TradeOScostbook` (the TradeOS SaaS product's own database). Don't cross-wire them.
+
+**Rotating a secret:**
+- `SUPABASE_SERVICE_ROLE_KEY` — Supabase dashboard → Settings → API → regenerate service role key, then update Vercel Production immediately (the old key stops working the moment it's regenerated).
+- `RESEND_API_KEY` — Resend dashboard → API Keys → revoke and create a new one, then update Vercel Production.
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` — regenerate in Supabase dashboard if ever suspected compromised; low urgency otherwise since it's already public by design and constrained by RLS.
+
+**Testing the contact pipeline after configuring:** submit the `/contact` form with a clearly-labeled test lead (e.g. name "Test Lead", a real inbox you control), confirm it appears in `/admin`, confirm the notification email arrives, then delete the test row from the `leads` table in Supabase.
 
 ## Supabase (`leads` table)
 

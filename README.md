@@ -55,7 +55,7 @@ npm run dev
 ```bash
 vercel --prod
 ```
-Add all env vars in Vercel dashboard → Settings → Environment Variables.
+Add all env vars in Vercel dashboard → Settings → Environment Variables. See `PROJECT.md` → "Environment variables" for which environments (Production/Preview/Development) each variable belongs in, and for rotation and contact-pipeline testing instructions.
 
 ## Project structure
 
@@ -83,7 +83,7 @@ components/
 └── (ui components)
 
 lib/
-├── supabase.ts         # Anon + service-role Supabase clients (API routes)
+├── supabase.ts         # Lazily-constructed service-role client (contact API route only)
 ├── supabase-server.ts  # Cookie-aware Supabase client for Server Components
 ├── supabase-browser.ts # Supabase client for Client Components
 └── resend.ts           # Email templates + send functions
