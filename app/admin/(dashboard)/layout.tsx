@@ -3,8 +3,7 @@ import { createClient } from "@/lib/supabase-server";
 import LogoutButton from "@/components/admin/LogoutButton";
 
 export default async function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const user = await getAuthenticatedUser();
 
   if (!user) {
     redirect("/admin/login");
@@ -27,4 +26,21 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
       <main className="px-6 md:px-10 py-8 max-w-7xl mx-auto">{children}</main>
     </div>
   );
+}
+
+async function getAuthenticatedUser() {
+  try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    return user;
+  } catch (err) {
+    // Next.js signals control flow (redirect, dynamic-usage bailout, etc.) by
+    // throwing objects with a `digest` property — those must propagate, not
+    // be treated as an auth failure.
+    if (err && typeof err === "object" && "digest" in err) {
+      throw err;
+    }
+    console.error("Admin auth check failed, denying access:", err);
+    return null;
+  }
 }
