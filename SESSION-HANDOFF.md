@@ -1,6 +1,48 @@
 # SESSION-HANDOFF.md
 
-Last updated: 2026-07-05
+Last updated: 2026-08-08
+
+## Completed (2026-08-06 to 2026-08-08) — Production-readiness sprint: PRs #2–#5, all merged to `main`
+
+Four small, independently-verified PRs, each opened from its own branch and merged same-day. No product/SaaS functionality touched — this repo is the marketing site + lead-capture + admin dashboard only.
+
+### PR #2 (`fd3ed7b`) — Website improvements: accessibility, messaging, 404 page, CI baseline
+- **Real bug fix**: `proxy.ts` exported its matcher config as `proxyConfig` instead of `config` — Next.js only reads `config`, so the matcher was silently ignored and the proxy middleware ran on *every* route instead of just `/admin/*`. This had been causing public routes to 500.
+- Contact form (`app/(site)/contact/ContactClient.tsx`): added unique `id`/`htmlFor` pairs to all 14 controls — 0 duplicate/missing IDs verified.
+- Homepage: added an "Illustrative example — not live customer data" disclosure on the hero dashboard panel, plus one clarifying sentence that 404 TradeOS sells websites/marketing systems, not SaaS access.
+- New `app/not-found.tsx` — branded 404 page (reuses Nav/Footer/TerminalFrame), `robots: noindex`.
+- New `app/admin/layout.tsx` — `robots: { index: false, follow: false }` on `/admin` and `/admin/login`.
+- `lib/supabase.ts`/`lib/resend.ts`/`app/api/contact/route.ts` — clients made lazily-constructed instead of built at module load, so `npm run build` no longer requires real Supabase/Resend secrets (verified: builds clean with **zero env vars**). Also dropped an unused `supabase` export with no callers.
+- `eslint.config.mjs` — excluded `docs/design/source-import/**` (an imported reference bundle, not app code) from lint; its 38 pre-existing errors were making `npm run lint` exit non-zero unconditionally.
+- New `.github/workflows/ci.yml` — PR/push-to-main CI: `npm ci` → lint → typecheck → build, Node 20, `contents: read` only, no secrets referenced.
+- Owner decisions flagged but not resolved: homepage testimonials ("Jake S.", "Mike R.", "Tom D.") are unverifiable from the repo; `/work` Lucas Construction case-study numbers ("#1 Local rank", "98 Speed score", "3wk Launch time") are unsourced/undated and name a real linked business — higher risk than the testimonials. Still open.
+
+### PR #3 (`a6b9f27`) — Legal entity naming + deployment readiness
+- Per owner confirmation, formal entity is **404 TradeOS LLC**. Named on `LICENSE` copyright line, `Footer.tsx` copyright bar, and one defining sentence each on `/privacy` and `/terms` (existing policy body left untouched — "we"/"our"/"404 TradeOS" language still applies once the entity is defined). Customer-facing brand name ("404 TradeOS") deliberately left unchanged everywhere else (nav, headings, JSON-LD, About page).
+- `package.json` — added `"engines": { "node": ">=20.9.0" }` (previously unset; matches Next.js's own minimum and the CI workflow's Node version).
+
+### PR #4 (`e1fed29`) — Document environment variable configuration policy
+- Docs-only, no code changes. `.env.example` now has per-variable descriptions + public/server-only classification. `PROJECT.md`'s env var section expanded: classification table, where each var is consumed in code, Vercel Production/Preview policy (explicit: don't copy production secrets into Preview without an approved preview backend), rotation steps, contact-pipeline test instructions. `README.md` had a stale comment about `lib/supabase.ts`'s old shape (used to export an eager anon + service-role pair; now only a lazy service-role client for the contact API) — fixed.
+- Confirmed via Supabase project metadata (no keys touched): this site's correct Supabase project is **"404 TradeOS"**, distinct from `404TradeOScostbook` (the separate SaaS product's database) — no cross-wiring risk.
+
+### PR #5 (`3e4c057`) — Fail closed instead of crashing when Supabase env vars are missing on `/admin`
+- **Real production bug**: prod logs showed `proxy.ts` throwing an unhandled exception on every `/admin/:path*` request (`Your project's URL and Key are required to create a Supabase client!`) because `NEXT_PUBLIC_SUPABASE_URL`/`NEXT_PUBLIC_SUPABASE_ANON_KEY` are unset in this project's Vercel Production env, and `proxy.ts` passed them into `createServerClient` with non-null assertions — crashing `/admin/login` itself, not just the authenticated dashboard. Same pattern existed one layer deeper in `lib/supabase-server.ts`, used by the real auth gate.
+- `proxy.ts` (only refreshes the session cookie, not the auth boundary) now skips the refresh and logs instead of crashing when config is missing or `getUser()` errors.
+- `lib/supabase-server.ts` now throws a clear, named error instead of passing `undefined` into the SDK constructor (matches the existing pattern in `lib/supabase.ts`'s `getSupabaseAdmin()`).
+- `app/admin/(dashboard)/layout.tsx` catches that error and redirects to `/admin/login` — any auth-check failure now denies access, none grants it. Explicitly re-throws Next.js's own `digest`-tagged internal signals (redirect, dynamic-usage bailout) so real framework control flow isn't swallowed — caught during verification when an early version logged a false-positive "auth check failed" on every build by catching Next's internal `DYNAMIC_SERVER_USAGE` signal from `cookies()`.
+- **Does not fix**: the missing env vars themselves — `/admin/login` loads again, but real sign-in still needs actual `NEXT_PUBLIC_SUPABASE_URL`/`NEXT_PUBLIC_SUPABASE_ANON_KEY` values set in Vercel Production (build-time-inlined, so a redeploy is required after setting them). **This is still outstanding** — admin login will not actually work in production until the owner sets these in Vercel.
+
+### Verification (all four PRs)
+`npm ci` clean, `npx tsc --noEmit` clean, `npm run lint` clean (exit 0), `npm run build` clean with **zero env vars** (24 routes) for every PR. PR #2 additionally verified via Playwright screenshots at 1440px/390px (homepage, contact, 404 page) and direct `curl`/API checks (404 status, `noindex` meta, admin redirect-when-unauthenticated, contact API error paths unchanged).
+
+## Pending / not done (carried forward + new)
+
+- **Vercel Production env vars for `/admin`** (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`) are still unset — admin login is not functional in production yet. No tool in this environment can set them; owner must do this directly in the Vercel dashboard, then redeploy (build-time-inlined).
+- Homepage testimonials and `/work` case-study numbers still need an owner decision (verify as real, replace with labeled-illustrative copy, or remove) — flagged in PR #2, unresolved.
+- `npm audit`: 6 pre-existing findings (1 moderate, 5 high — `next`, `postcss`, `sharp`, `brace-expansion`, `js-yaml`); fix requires bumping pinned `next` `16.2.9` → `16.3.0`, deferred pending review.
+- Minimal analytics baseline (page views + core conversion events) — deferred pending platform decision.
+- Real photography still needed (see 2026-06-23 entries below): Lucas Construction project photos, Billy Showalter headshot, service trucks, closer hero match. Degrades gracefully to styled placeholders in the meantime.
+- Deployment platform/project linkage for this repo was unverified as of PR #2; PR #2's Vercel preview comments on PR #5 show a live Vercel project (`404-tradeos`, owner `billykshowalters`) is in fact wired up — worth confirming this is the intended long-term setup.
 
 ## Completed this session (2026-07-05) — Git repo initialization + production cleanup
 
