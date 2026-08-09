@@ -1,6 +1,13 @@
 # SESSION-HANDOFF.md
 
-Last updated: 2026-08-08
+Last updated: 2026-08-09
+
+## Completed (2026-08-09) — `next` version bump, npm audit clean
+
+- Bumped `next` `16.2.9` → `16.3.0` and `eslint-config-next` to match (repo convention: exact-pinned, not `^`). Resolves the `next`/`postcss`/`sharp` high-severity advisories flagged as deferred in PR #2.
+- Ran `npm audit fix` (non-force) for the remaining transitive findings (`brace-expansion`, `js-yaml`, `postcss` via `@tailwindcss/postcss`) — no direct dependency changes needed. **`npm audit` now reports 0 vulnerabilities.**
+- Verified: `npm run lint` clean, `npx tsc --noEmit` clean, `npm run build` clean (24 routes, same shape as before — `/admin` and `/api/contact` still dynamic). Re-ran the PR #5 fail-closed behavioral check (`next start` with no Supabase env vars) under 16.3.0: `/admin/login` → 200, `/admin` → 307 redirect, no crash — confirms that fix still holds on the new version.
+- Not a PR yet — pushed straight to `claude/tradeos-website-setup-1hr249`, awaiting owner decision on whether to open one.
 
 ## Completed (2026-08-06 to 2026-08-08) — Production-readiness sprint: PRs #2–#5, all merged to `main`
 
@@ -39,7 +46,6 @@ Four small, independently-verified PRs, each opened from its own branch and merg
 
 - **Vercel Production env vars for `/admin`** (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`) are still unset — admin login is not functional in production yet. No tool in this environment can set them; owner must do this directly in the Vercel dashboard, then redeploy (build-time-inlined).
 - Homepage testimonials and `/work` case-study numbers still need an owner decision (verify as real, replace with labeled-illustrative copy, or remove) — flagged in PR #2, unresolved.
-- `npm audit`: 6 pre-existing findings (1 moderate, 5 high — `next`, `postcss`, `sharp`, `brace-expansion`, `js-yaml`); fix requires bumping pinned `next` `16.2.9` → `16.3.0`, deferred pending review.
 - Minimal analytics baseline (page views + core conversion events) — deferred pending platform decision.
 - Real photography still needed (see 2026-06-23 entries below): Lucas Construction project photos, Billy Showalter headshot, service trucks, closer hero match. Degrades gracefully to styled placeholders in the meantime.
 - Deployment platform/project linkage for this repo was unverified as of PR #2; PR #2's Vercel preview comments on PR #5 show a live Vercel project (`404-tradeos`, owner `billykshowalters`) is in fact wired up — worth confirming this is the intended long-term setup.
