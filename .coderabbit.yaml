@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: en-US
+
+reviews:
+  profile: assertive
+  request_changes_workflow: false
+  high_level_summary: true
+  review_status: true
+  review_details: true
+  poem: false
+  auto_review:
+    enabled: true
+    drafts: false
+    auto_incremental_review: true
+    base_branches:
+      - "main"
+      - "feat/.*"
+      - "feature/.*"
+      - "chore/.*"
+      - "docs/.*"
+      - "dependabot/.*"
+    ignore_title_keywords:
+      - "WIP"
+      - "[skip review]"
+    labels:
+      - "!do-not-review"
+  path_filters:
+    - "!**/node_modules/**"
+    - "!**/.next/**"
+    - "!**/out/**"
+    - "!**/coverage/**"
+    - "!**/package-lock.json"
+  path_instructions:
+    - path: "app/api/**"
+      instructions: |
+        Focus on input validation, abuse resistance, error handling, Supabase service-role usage, Resend email behavior, and avoiding leaks of private lead data or secrets.
+    - path: "app/admin/**"
+      instructions: |
+        Review admin surfaces for fail-closed auth behavior, tenant/data isolation, safe loading/error states, and no exposure of service-role credentials.
+    - path: "app/**"
+      instructions: |
+        Review Next.js App Router code for server/client boundary correctness, route metadata, accessibility, mobile behavior, and truthful public-facing content.
+    - path: "lib/**"
+      instructions: |
+        Check Supabase and Resend clients for lazy initialization, server-only usage, missing environment handling, and clear production failure modes.
+    - path: "app/sitemap.ts"
+      instructions: |
+        Verify public route coverage stays aligned with metadata, robots, LocalBusiness schema, and internal navigation.
+
+chat:
+  auto_reply: true
