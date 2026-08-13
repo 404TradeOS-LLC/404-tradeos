@@ -84,7 +84,7 @@ export default function ContactClient() {
             <TerminalFrame title="quote_request.log" status="online" statusLabel="SENT">
               <div className="flex flex-col items-center text-center py-8">
                 <div className="w-14 h-14 rounded-full bg-[var(--color-copper)] flex items-center justify-center mb-5">
-                  <CheckCircle size={26} className="text-forge-black" />
+                  <CheckCircle size={26} className="text-[var(--color-forge-black)]" />
                 </div>
                 <h2 className="text-xl font-semibold text-[var(--color-bone)] mb-3">Quote request sent!</h2>
                 <p className="text-[var(--color-forge-muted)] text-sm leading-relaxed max-w-xs">
@@ -175,7 +175,7 @@ export default function ContactClient() {
               {/* Honeypot */}
               <input id="contact-website-url" type="text" name="website_url" value={form.website_url} onChange={set("website_url")} className="hidden" tabIndex={-1} autoComplete="off" />
 
-              {error && <p className="text-sm text-[var(--color-error-red)] bg-error-red/10 border border-error-red/30 rounded-sm px-3 py-2">{error}</p>}
+              {error && <p className="text-sm text-[var(--color-error-red)] bg-[var(--color-error-red)]/10 border border-[var(--color-error-red)]/30 rounded-sm px-3 py-2">{error}</p>}
 
               <button type="submit" disabled={loading} className="w-full btn-primary justify-center text-sm py-3">
                 {loading ? "Sending..." : "Send my quote request"} {!loading && <ArrowRight size={15} />}
@@ -202,7 +202,7 @@ export default function ContactClient() {
                 <div key={i} className="flex gap-3">
                   <div className="flex flex-col items-center">
                     <div className="w-2.5 h-2.5 rounded-full bg-[var(--color-copper)] mt-1 flex-shrink-0" />
-                    {i < 3 && <div className="w-px flex-1 bg-forge-border mt-1" />}
+                    {i < 3 && <div className="w-px flex-1 bg-[var(--color-forge-border)] mt-1" />}
                   </div>
                   <div className="pb-4">
                     <div className="text-xs font-semibold text-[var(--color-bone)] mb-1">{step.time}</div>
@@ -222,7 +222,7 @@ export default function ContactClient() {
               { icon: <CheckCircle size={15} />, title: "Trades only", body: "We don't build sites for restaurants. Only trades — faster builds, better results." },
             ].map(w => (
               <div key={w.title} className="flex gap-3 mb-4 last:mb-0">
-                <div className="w-8 h-8 bg-[var(--color-copper)] rounded-sm flex items-center justify-center text-forge-black flex-shrink-0">{w.icon}</div>
+                <div className="w-8 h-8 bg-[var(--color-copper)] rounded-sm flex items-center justify-center text-[var(--color-forge-black)] flex-shrink-0">{w.icon}</div>
                 <div>
                   <div className="text-xs font-semibold text-[var(--color-bone)] mb-0.5">{w.title}</div>
                   <div className="text-xs text-[var(--color-forge-muted)] leading-relaxed">{w.body}</div>
@@ -240,7 +240,7 @@ export default function ContactClient() {
               { icon: <MapPin size={15} />, label: "Office", val: "7175 Robertson Rd., Terre Haute, IN 47802" },
             ].map(c => (
               <div key={c.label} className="flex items-center gap-3 bg-[var(--color-forge-black)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2.5 mb-2 last:mb-0">
-                <div className="w-8 h-8 bg-[var(--color-copper)] rounded-sm flex items-center justify-center text-forge-black flex-shrink-0">{c.icon}</div>
+                <div className="w-8 h-8 bg-[var(--color-copper)] rounded-sm flex items-center justify-center text-[var(--color-forge-black)] flex-shrink-0">{c.icon}</div>
                 <div>
                   <div className="text-xs text-[var(--color-forge-rust)]">{c.label}</div>
                   <div className="text-sm font-medium text-[var(--color-bone)]">{c.val}</div>

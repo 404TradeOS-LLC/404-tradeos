@@ -68,7 +68,7 @@ export default function ReviewManagementDemo() {
         <div className="flex flex-col gap-2">
           {feedbackQueue.map((f) => (
             <div key={f.name} className="flex items-start gap-3 border border-[var(--color-forge-border)] bg-[var(--color-forge-black)] rounded-sm px-3 py-2.5">
-              <div className="w-7 h-7 rounded-full bg-[var(--color-copper)] text-forge-black flex items-center justify-center text-[10px] font-bold shrink-0">
+              <div className="w-7 h-7 rounded-full bg-[var(--color-copper)] text-[var(--color-forge-black)] flex items-center justify-center text-[10px] font-bold shrink-0">
                 {f.name.split(" ").map((n) => n[0]).join("")}
               </div>
               <div className="flex-1 min-w-0">

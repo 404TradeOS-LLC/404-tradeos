@@ -59,7 +59,6 @@ export default function AboutPage() {
           </div>
 
           <TradeImage
-            src="/images/team/billy-showalter.jpg"
             alt="Billy Showalter, founder of 404 TradeOS"
             placeholderLabel="awaiting real headshot of Billy Showalter"
             className="aspect-[4/5] rounded-sm border border-[var(--color-forge-border)]"

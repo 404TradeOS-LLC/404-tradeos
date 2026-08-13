@@ -121,10 +121,10 @@ export default function PricingClient() {
             onClick={() => setAnnual(!annual)}
             className={`relative w-11 h-6 rounded-full transition-colors border ${annual ? "bg-[var(--color-copper)] border-[var(--color-copper)]" : "bg-[var(--color-forge-dark)] border-[var(--color-forge-border)]"}`}
           >
-            <span className={`absolute top-0.5 w-5 h-5 rounded-full bg-bone transition-all ${annual ? "left-5" : "left-0.5"}`} />
+            <span className={`absolute top-0.5 w-5 h-5 rounded-full bg-[var(--color-bone)] transition-all ${annual ? "left-5" : "left-0.5"}`} />
           </button>
           <span className={`text-sm font-mono ${annual ? "text-[var(--color-bone)] font-semibold" : "text-[var(--color-forge-rust)]"}`}>Annual</span>
-          <span className="text-xs font-mono text-[var(--color-system-green)] bg-[var(--color-system-green)]/10 border border-system-green/30 rounded-full px-2.5 py-0.5">
+          <span className="text-xs font-mono text-[var(--color-system-green)] bg-[var(--color-system-green)]/10 border border-[var(--color-system-green)]/30 rounded-full px-2.5 py-0.5">
             Save 20%
           </span>
         </div>
@@ -172,7 +172,7 @@ export default function PricingClient() {
                   href="/contact"
                   className={`w-full flex items-center justify-center gap-2 py-3 px-4 rounded-sm font-semibold text-sm transition-colors mb-5 ${
                     plan.featured
-                      ? "bg-[var(--color-copper)] text-forge-black hover:bg-[var(--color-copper-light)]"
+                      ? "bg-[var(--color-copper)] text-[var(--color-forge-black)] hover:bg-[var(--color-copper-light)]"
                       : "border border-[var(--color-copper)] text-[var(--color-copper)] hover:bg-[var(--color-copper)]/10"
                   }`}
                 >

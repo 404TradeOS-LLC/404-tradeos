@@ -35,7 +35,7 @@ export default function ControlCenterDemo({ onSelectModule }: { onSelectModule?:
             className="group relative text-left border border-[var(--color-forge-border)] bg-[var(--color-forge-black)] rounded-sm p-4 hover:border-[var(--color-copper)]/50 transition-colors"
           >
             <div className="flex items-center justify-between mb-3">
-              <div className="w-9 h-9 bg-gradient-to-br from-[var(--color-copper)] to-[var(--color-copper-dark)] rounded-sm flex items-center justify-center text-forge-black">
+              <div className="w-9 h-9 bg-gradient-to-br from-[var(--color-copper)] to-[var(--color-copper-dark)] rounded-sm flex items-center justify-center text-[var(--color-forge-black)]">
                 <m.icon size={16} />
               </div>
               <SystemStatusBadge status={m.status} label={m.statusLabel} />
