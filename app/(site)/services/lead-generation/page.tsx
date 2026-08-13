@@ -3,6 +3,10 @@ import ServicePageLayout, { type ServicePageData } from "@/components/sections/S
 export const metadata = {
   title: "Lead Generation & Management",
   description: "Supabase-powered lead capture with a private admin dashboard and real-time notifications.",
+  openGraph: {
+    title: "Lead Generation & Management | 404 TradeOS",
+    description: "Supabase-powered lead capture with a private admin dashboard and real-time notifications.",
+  },
 };
 
 const data: ServicePageData = {

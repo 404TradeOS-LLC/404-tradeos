@@ -3,6 +3,10 @@ import ServicePageLayout, { type ServicePageData } from "@/components/sections/S
 export const metadata = {
   title: "Ongoing Support & Maintenance",
   description: "Hosting, SSL, security scans, content updates, and monthly performance reports.",
+  openGraph: {
+    title: "Ongoing Support & Maintenance | 404 TradeOS",
+    description: "Hosting, SSL, security scans, content updates, and monthly performance reports.",
+  },
 };
 
 const data: ServicePageData = {
