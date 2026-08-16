@@ -6,6 +6,10 @@ import CaseStudyToggle from "@/components/sections/CaseStudyToggle";
 export const metadata = {
   title: "Our Work",
   description: "Real trade businesses, real results. See the websites we've built for plumbers, contractors, and electricians.",
+  openGraph: {
+    title: "Our Work | 404 TradeOS",
+    description: "Real trade businesses, real results. See the websites we've built for plumbers, contractors, and electricians.",
+  },
 };
 
 export default function WorkPage() {

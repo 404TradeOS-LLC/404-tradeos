@@ -1,6 +1,16 @@
 # SESSION-HANDOFF.md
 
-Last updated: 2026-07-05
+Last updated: 2026-08-16
+
+## Completed this session (2026-08-16) — Daily maintenance: OG metadata gaps + demo CTA links
+
+- **Audit context**: two prior daily-maintenance PRs (#16, #17) were already open and unmerged against this same base commit, fixing a broken image reference, an email-template contrast bug, bare Tailwind utility classes, per-page OG metadata on pricing/contact/6 service pages, and a `rounded-lg` holdout. Re-verified none of those issues recur in the current tree; this session covers only what those PRs don't.
+- **SEO — missing `openGraph` on 6 pages**: `about`, `work`, `privacy`, `terms`, `resources`, and the `/services` index page had `metadata.title`/`description` but no `openGraph` block, so social/messaging shares of those pages fell back to the root layout's homepage-flavored OG title/description instead of their own. Added matching `openGraph: { title, description }` to each, reusing each page's existing copy — same fix pattern already applied to pricing/contact/services in PR #17.
+- **Navigation — raw `<a>` instead of `next/link`**: all 6 interactive demo dashboards (`components/demos/{GoogleAds,LocalSEO,LeadGeneration,Maintenance,WebsiteDesign,ReviewManagement}Demo.tsx`) linked their bottom CTA to `/contact` with a plain `<a href>`, forcing a full page reload and losing prefetch/client-side transition. Swapped to `next/link`.
+- **Performance — image format coverage**: `next.config.ts` `images.formats` only listed `"image/webp"`; added `"image/avif"` ahead of it so Next tries the smaller format first for any future `next/image`-optimized assets.
+- **Checked, no new issues**: broken internal links, `sitemap.ts`/`robots.ts` consistency, alt text on all `TradeImage` usages, form label association (`ContactClient.tsx`, admin login), bare Tailwind utilities and `rounded-lg` holdouts beyond what #16/#17 already cover, hero framer-motion-free convention.
+- Verified: `npm run lint`, `npx tsc --noEmit`, `npm run build` all clean (24 routes).
+- **Not done**: did not touch PRs #16/#17 themselves (still open, still awaiting owner merge) or dependabot PRs #6–14 — out of scope for a marketing-content pass.
 
 ## Completed this session (2026-07-05) — Git repo initialization + production cleanup
 
