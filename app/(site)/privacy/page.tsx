@@ -1,6 +1,10 @@
 export const metadata = {
   title: "Privacy Policy",
   description: "How 404 TradeOS LLC collects, stores, and uses your information.",
+  openGraph: {
+    title: "Privacy Policy | 404 TradeOS",
+    description: "How 404 TradeOS LLC collects, stores, and uses your information.",
+  },
 };
 
 const sections = [

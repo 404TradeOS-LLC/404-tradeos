@@ -5,6 +5,10 @@ import CircuitGlow from "@/components/decor/CircuitGlow";
 export const metadata = {
   title: "Resources",
   description: "Free, practical guides for trade businesses — local SEO, lead capture, reviews, and website conversion basics.",
+  openGraph: {
+    title: "Resources | 404 TradeOS",
+    description: "Free, practical guides for trade businesses — local SEO, lead capture, reviews, and website conversion basics.",
+  },
 };
 
 const guides = [

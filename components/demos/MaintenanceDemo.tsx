@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { ShieldCheck, DatabaseBackup, FileCheck2, RefreshCw, Activity } from "lucide-react";
 import TerminalPanel from "./shared/TerminalPanel";
 import AnimatedMetricCounter from "./shared/AnimatedMetricCounter";
@@ -103,9 +104,9 @@ export default function MaintenanceDemo() {
         <div className="flex items-center gap-2 mt-5 text-xs text-[var(--color-forge-rust)] font-mono">
           <FileCheck2 size={13} /> Hosting, SSL, backups, and security — handled, so you don&rsquo;t have to think about it.
         </div>
-        <a href="/contact" className="btn-outline text-sm w-full justify-center mt-4">
+        <Link href="/contact" className="btn-outline text-sm w-full justify-center mt-4">
           Get worry-free hosting
-        </a>
+        </Link>
       </TerminalPanel>
     </div>
   );

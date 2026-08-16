@@ -6,6 +6,10 @@ import TradeImage from "@/components/ui/TradeImage";
 export const metadata = {
   title: "About",
   description: "404 TradeOS is built by a licensed tradesperson, for trade businesses — not a generic marketing agency.",
+  openGraph: {
+    title: "About | 404 TradeOS",
+    description: "404 TradeOS is built by a licensed tradesperson, for trade businesses — not a generic marketing agency.",
+  },
 };
 
 const facts = [
