@@ -81,11 +81,11 @@ export default function ServicePageLayout({ data }: { data: ServicePageData }) {
         </h1>
         <p className="text-[var(--color-forge-muted)] max-w-lg leading-relaxed mb-6">{data.heroDesc}</p>
         <div className="flex items-center gap-4 flex-wrap">
-          <div className="flex items-center gap-2 bg-[var(--color-forge-dark)] border border-[var(--color-forge-border)] rounded-lg px-3 py-2">
+          <div className="flex items-center gap-2 bg-[var(--color-forge-dark)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2">
             <span className="text-xs text-[var(--color-forge-rust)] font-mono">from</span>
             <span className="text-sm font-semibold text-[var(--color-copper)]">{data.fromPrice}</span>
           </div>
-          <div className="flex items-center gap-2 bg-[var(--color-forge-dark)] border border-[var(--color-forge-border)] rounded-lg px-3 py-2">
+          <div className="flex items-center gap-2 bg-[var(--color-forge-dark)] border border-[var(--color-forge-border)] rounded-sm px-3 py-2">
             <Clock size={13} className="text-[var(--color-system-green)]" />
             <span className="text-sm text-[var(--color-forge-muted)]">{data.timeline}</span>
           </div>
