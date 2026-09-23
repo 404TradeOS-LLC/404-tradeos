@@ -6,6 +6,10 @@ import OSModuleCard from "@/components/sections/OSModuleCard";
 export const metadata = {
   title: "Services",
   description: "Website design, local SEO, lead generation, review management, Google Ads, and ongoing support for trade businesses.",
+  openGraph: {
+    title: "Services | 404 TradeOS",
+    description: "Website design, local SEO, lead generation, review management, Google Ads, and ongoing support for trade businesses.",
+  },
 };
 
 const services = [

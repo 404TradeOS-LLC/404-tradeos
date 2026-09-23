@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { Star, MessageSquareText, Send } from "lucide-react";
 import TerminalPanel from "./shared/TerminalPanel";
 import ActivityFeed, { type ActivityItem } from "./shared/ActivityFeed";
@@ -84,9 +85,9 @@ export default function ReviewManagementDemo() {
         <div className="flex items-center gap-2 mt-5 text-xs text-[var(--color-forge-rust)] font-mono">
           <MessageSquareText size={13} /> Auto-replies drafted for every review — you just approve and send.
         </div>
-        <a href="/contact" className="btn-outline text-sm w-full justify-center mt-4">
+        <Link href="/contact" className="btn-outline text-sm w-full justify-center mt-4">
           <Send size={14} /> Automate my reviews
-        </a>
+        </Link>
       </TerminalPanel>
     </div>
   );

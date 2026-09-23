@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { useInView } from "framer-motion";
+import Link from "next/link";
 import { MapPin, CheckCircle2, TrendingUp, ArrowRight } from "lucide-react";
 import TerminalPanel from "./shared/TerminalPanel";
 import DataChart from "./shared/DataChart";
@@ -104,9 +105,9 @@ export default function LocalSEODemo() {
             </span>
           ))}
         </div>
-        <a href="/contact" className="btn-outline text-sm w-full justify-center">
+        <Link href="/contact" className="btn-outline text-sm w-full justify-center">
           Rank #1 in your area <ArrowRight size={15} />
-        </a>
+        </Link>
       </TerminalPanel>
     </div>
   );

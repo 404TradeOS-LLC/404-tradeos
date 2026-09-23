@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import { Monitor, Smartphone, Phone, PhoneMissed, Clock, ArrowRight } from "lucide-react";
 import TerminalPanel from "./shared/TerminalPanel";
 import DashboardWindow from "./shared/DashboardWindow";
@@ -192,9 +193,9 @@ export default function WebsiteDesignDemo() {
             </div>
           ))}
         </div>
-        <a href="/contact" className="btn-outline text-sm w-full justify-center mt-5">
+        <Link href="/contact" className="btn-outline text-sm w-full justify-center mt-5">
           Get a site like this <ArrowRight size={15} />
-        </a>
+        </Link>
       </TerminalPanel>
     </div>
   );

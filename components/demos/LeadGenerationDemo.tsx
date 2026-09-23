@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { PhoneCall, FileText, Play, ArrowRight } from "lucide-react";
 import TerminalPanel from "./shared/TerminalPanel";
 import ActivityFeed, { type ActivityItem } from "./shared/ActivityFeed";
@@ -120,9 +121,9 @@ export default function LeadGenerationDemo() {
           <FileText size={14} className="text-[var(--color-copper)]" /> Quote requests — last 6 weeks
         </div>
         <DataChart data={[6, 9, 8, 13, 17, 22]} labels={["W1", "W2", "W3", "W4", "W5", "W6"]} />
-        <a href="/contact" className="btn-primary text-sm w-full justify-center mt-5">
+        <Link href="/contact" className="btn-primary text-sm w-full justify-center mt-5">
           <PhoneCall size={15} /> Start capturing leads like this
-        </a>
+        </Link>
       </TerminalPanel>
     </div>
   );
