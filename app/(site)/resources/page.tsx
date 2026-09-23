@@ -66,7 +66,7 @@ export default function ResourcesPage() {
         {guides.map((g) => (
           <div key={g.title} className="border border-[var(--color-forge-border)] bg-[var(--color-forge-dark)] rounded-sm p-5">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-9 h-9 bg-gradient-to-br from-[var(--color-copper)] to-[var(--color-copper-dark)] rounded-sm flex items-center justify-center text-forge-black">
+              <div className="w-9 h-9 bg-gradient-to-br from-[var(--color-copper)] to-[var(--color-copper-dark)] rounded-sm flex items-center justify-center text-[var(--color-forge-black)]">
                 {g.icon}
               </div>
               <h2 className="text-base font-semibold text-[var(--color-bone)]">{g.title}</h2>

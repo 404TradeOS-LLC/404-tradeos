@@ -28,7 +28,7 @@ export default function OSModuleCard({
     >
       <CornerBrackets className="opacity-0 group-hover:opacity-100 transition-opacity duration-200" size={14} />
       <div className="flex items-center justify-between mb-4">
-        <div className="w-9 h-9 bg-gradient-to-br from-[var(--color-copper)] to-[var(--color-copper-dark)] rounded-sm flex items-center justify-center text-forge-black">
+        <div className="w-9 h-9 bg-gradient-to-br from-[var(--color-copper)] to-[var(--color-copper-dark)] rounded-sm flex items-center justify-center text-[var(--color-forge-black)]">
           {icon}
         </div>
         <span className="mono-label">{id}</span>

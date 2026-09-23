@@ -118,7 +118,7 @@ export default function WebsiteDesignDemo() {
               type="button"
               onClick={() => setDevice("desktop")}
               aria-pressed={device === "desktop"}
-              className={`p-1.5 rounded-sm transition-colors ${device === "desktop" ? "bg-[var(--color-copper)] text-forge-black" : "text-[var(--color-forge-rust)]"}`}
+              className={`p-1.5 rounded-sm transition-colors ${device === "desktop" ? "bg-[var(--color-copper)] text-[var(--color-forge-black)]" : "text-[var(--color-forge-rust)]"}`}
               aria-label="Desktop preview"
             >
               <Monitor size={14} />
@@ -127,7 +127,7 @@ export default function WebsiteDesignDemo() {
               type="button"
               onClick={() => setDevice("mobile")}
               aria-pressed={device === "mobile"}
-              className={`p-1.5 rounded-sm transition-colors ${device === "mobile" ? "bg-[var(--color-copper)] text-forge-black" : "text-[var(--color-forge-rust)]"}`}
+              className={`p-1.5 rounded-sm transition-colors ${device === "mobile" ? "bg-[var(--color-copper)] text-[var(--color-forge-black)]" : "text-[var(--color-forge-rust)]"}`}
               aria-label="Mobile preview"
             >
               <Smartphone size={14} />
@@ -180,7 +180,7 @@ export default function WebsiteDesignDemo() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {callMetrics.map((m) => (
             <div key={m.label} className="border border-[var(--color-forge-border)] bg-[var(--color-forge-black)] rounded-sm p-4 flex items-center gap-3">
-              <div className="w-9 h-9 bg-gradient-to-br from-[var(--color-copper)] to-[var(--color-copper-dark)] rounded-sm flex items-center justify-center text-forge-black shrink-0">
+              <div className="w-9 h-9 bg-gradient-to-br from-[var(--color-copper)] to-[var(--color-copper-dark)] rounded-sm flex items-center justify-center text-[var(--color-forge-black)] shrink-0">
                 <m.icon size={16} />
               </div>
               <div>

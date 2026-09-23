@@ -45,15 +45,15 @@ export async function sendOwnerNotification(lead: {
         <h1 style="color: #F7F2EC; font-size: 24px; margin: 0 0 4px;">New lead received</h1>
         <p style="color: #B87333; font-size: 12px; letter-spacing: 0.16em; margin: 0 0 24px;">tradeos://leads — new submission</p>
         <table style="width: 100%; border-collapse: collapse;">
-          <tr><td style="padding: 8px 0; color: #5a3d1e; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; width: 140px;">Name</td><td style="padding: 8px 0; color: #E8C99A;">${lead.first_name} ${lead.last_name}</td></tr>
-          <tr><td style="padding: 8px 0; color: #5a3d1e; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Phone</td><td style="padding: 8px 0; color: #E8C99A; font-size: 16px; font-weight: bold;">${lead.phone}</td></tr>
-          <tr><td style="padding: 8px 0; color: #5a3d1e; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Email</td><td style="padding: 8px 0; color: #E8C99A;">${lead.email}</td></tr>
-          <tr><td style="padding: 8px 0; color: #5a3d1e; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Business</td><td style="padding: 8px 0; color: #F7F2EC;">${lead.business_name ?? "—"}</td></tr>
-          <tr><td style="padding: 8px 0; color: #5a3d1e; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Trade</td><td style="padding: 8px 0; color: #F7F2EC;">${lead.trade_type ?? "—"}</td></tr>
-          <tr><td style="padding: 8px 0; color: #5a3d1e; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Plan</td><td style="padding: 8px 0; color: #F7F2EC;">${lead.plan_interest ?? "—"}</td></tr>
-          <tr><td style="padding: 8px 0; color: #5a3d1e; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">City</td><td style="padding: 8px 0; color: #F7F2EC;">${lead.city ?? "—"}</td></tr>
+          <tr><td style="padding: 8px 0; color: #998066; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; width: 140px;">Name</td><td style="padding: 8px 0; color: #E8C99A;">${lead.first_name} ${lead.last_name}</td></tr>
+          <tr><td style="padding: 8px 0; color: #998066; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Phone</td><td style="padding: 8px 0; color: #E8C99A; font-size: 16px; font-weight: bold;">${lead.phone}</td></tr>
+          <tr><td style="padding: 8px 0; color: #998066; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Email</td><td style="padding: 8px 0; color: #E8C99A;">${lead.email}</td></tr>
+          <tr><td style="padding: 8px 0; color: #998066; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Business</td><td style="padding: 8px 0; color: #F7F2EC;">${lead.business_name ?? "—"}</td></tr>
+          <tr><td style="padding: 8px 0; color: #998066; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Trade</td><td style="padding: 8px 0; color: #F7F2EC;">${lead.trade_type ?? "—"}</td></tr>
+          <tr><td style="padding: 8px 0; color: #998066; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Plan</td><td style="padding: 8px 0; color: #F7F2EC;">${lead.plan_interest ?? "—"}</td></tr>
+          <tr><td style="padding: 8px 0; color: #998066; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">City</td><td style="padding: 8px 0; color: #F7F2EC;">${lead.city ?? "—"}</td></tr>
         </table>
-        ${lead.message ? `<div style="background: #0D0A07; border: 1px solid #3d2a10; border-radius: 6px; padding: 16px; margin-top: 20px;"><p style="color: #5a3d1e; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 8px;">Message</p><p style="color: #C8C0B0; margin: 0;">${lead.message}</p></div>` : ""}
+        ${lead.message ? `<div style="background: #0D0A07; border: 1px solid #3d2a10; border-radius: 6px; padding: 16px; margin-top: 20px;"><p style="color: #998066; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 8px;">Message</p><p style="color: #C8C0B0; margin: 0;">${lead.message}</p></div>` : ""}
       </div>
     `,
   });
@@ -81,8 +81,8 @@ export async function sendCustomerConfirmation(lead: {
         <p style="color: #C8C0B0; line-height: 1.7; margin: 0 0 28px;">While you wait, feel free to check out our work and see what we've built for other trade businesses.</p>
         <a href="https://www.404tradeos.com/work" style="display: inline-block; background: #B87333; color: #0D0A07; font-weight: 700; padding: 12px 24px; border-radius: 4px; text-decoration: none;">See our work →</a>
         <div style="border-top: 1px solid #3d2a10; margin-top: 32px; padding-top: 20px;">
-          <p style="color: #5a3d1e; font-size: 12px; margin: 0;">hello@404tradeos.com · (812) 562-8504 · www.404tradeos.com</p>
-          <p style="color: #5a3d1e; font-size: 12px; margin: 4px 0 0;">7175 Robertson Rd., Terre Haute, IN 47802</p>
+          <p style="color: #998066; font-size: 12px; margin: 0;">hello@404tradeos.com · (812) 562-8504 · www.404tradeos.com</p>
+          <p style="color: #998066; font-size: 12px; margin: 4px 0 0;">7175 Robertson Rd., Terre Haute, IN 47802</p>
         </div>
       </div>
     `,
