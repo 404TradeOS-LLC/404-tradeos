@@ -1,6 +1,10 @@
 export const metadata = {
   title: "Terms of Service",
   description: "The agreement governing services provided by 404 TradeOS LLC.",
+  openGraph: {
+    title: "Terms of Service | 404 TradeOS",
+    description: "The agreement governing services provided by 404 TradeOS LLC.",
+  },
 };
 
 const sections = [

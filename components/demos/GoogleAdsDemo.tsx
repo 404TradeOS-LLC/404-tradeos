@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { DollarSign, Target, PhoneCall, TrendingUp, ArrowRight } from "lucide-react";
 import TerminalPanel from "./shared/TerminalPanel";
 import AnimatedMetricCounter from "./shared/AnimatedMetricCounter";
@@ -60,9 +61,9 @@ export default function GoogleAdsDemo() {
       <TerminalPanel title="tradeos://spend-vs-leads" status="online" statusLabel="TRENDING UP" bodyClassName="p-5">
         <div className="mono-label mb-3">Leads generated — last 6 weeks</div>
         <DataChart data={[8, 11, 14, 19, 24, 31]} labels={["W1", "W2", "W3", "W4", "W5", "W6"]} />
-        <a href="/contact" className="btn-primary text-sm w-full justify-center mt-5">
+        <Link href="/contact" className="btn-primary text-sm w-full justify-center mt-5">
           Get calls like this <ArrowRight size={15} />
-        </a>
+        </Link>
       </TerminalPanel>
     </div>
   );
