@@ -25,7 +25,7 @@ export default function GoogleAdsDemo() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {metrics.map((m) => (
           <div key={m.label} className="border border-[var(--color-forge-border)] bg-[var(--color-forge-dark)] rounded-sm p-4">
-            <div className="w-8 h-8 bg-gradient-to-br from-[var(--color-copper)] to-[var(--color-copper-dark)] rounded-sm flex items-center justify-center text-forge-black mb-3">
+            <div className="w-8 h-8 bg-gradient-to-br from-[var(--color-copper)] to-[var(--color-copper-dark)] rounded-sm flex items-center justify-center text-[var(--color-forge-black)] mb-3">
               <m.icon size={15} />
             </div>
             <div className="text-xl font-bold text-[var(--color-copper-light)]">

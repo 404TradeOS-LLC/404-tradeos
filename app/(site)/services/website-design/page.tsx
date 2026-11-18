@@ -3,6 +3,10 @@ import ServicePageLayout, { type ServicePageData } from "@/components/sections/S
 export const metadata = {
   title: "Website Design",
   description: "Custom Next.js websites built for trade businesses. Fast, mobile-first, and built to convert visitors into booked jobs.",
+  openGraph: {
+    title: "Website Design | 404 TradeOS",
+    description: "Custom Next.js websites built for trade businesses. Fast, mobile-first, and built to convert visitors into booked jobs.",
+  },
 };
 
 const data: ServicePageData = {

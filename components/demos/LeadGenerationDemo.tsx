@@ -81,7 +81,7 @@ export default function LeadGenerationDemo() {
           <div className="flex flex-col gap-2">
             {recordings.map((r) => (
               <div key={r.caller} className="flex items-center gap-3 border border-[var(--color-forge-border)] bg-[var(--color-forge-black)] rounded-sm px-3 py-2.5">
-                <button type="button" aria-label={`Play call from ${r.caller}`} className="w-7 h-7 rounded-full bg-[var(--color-copper)] text-forge-black flex items-center justify-center shrink-0 hover:bg-[var(--color-copper-light)] transition-colors">
+                <button type="button" aria-label={`Play call from ${r.caller}`} className="w-7 h-7 rounded-full bg-[var(--color-copper)] text-[var(--color-forge-black)] flex items-center justify-center shrink-0 hover:bg-[var(--color-copper-light)] transition-colors">
                   <Play size={12} fill="currentColor" />
                 </button>
                 <div className="flex-1 flex items-end gap-0.5 h-5" aria-hidden="true">

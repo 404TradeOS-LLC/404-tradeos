@@ -266,7 +266,7 @@ export default function HomePage() {
                   </div>
                   <h3 className="text-base font-semibold text-[var(--color-bone)] mb-2">{p.title}</h3>
                   <p className="text-sm text-[var(--color-forge-muted)] leading-relaxed mb-4">{p.body}</p>
-                  <span className="inline-block text-xs font-mono text-[var(--color-system-green)] bg-[var(--color-system-green)]/10 border border-system-green/30 rounded-full px-3 py-1">
+                  <span className="inline-block text-xs font-mono text-[var(--color-system-green)] bg-[var(--color-system-green)]/10 border border-[var(--color-system-green)]/30 rounded-full px-3 py-1">
                     {p.time}
                   </span>
                 </div>
@@ -344,7 +344,7 @@ export default function HomePage() {
                   </div>
                   <p className="text-sm text-[var(--color-forge-muted)] leading-relaxed mb-5 italic">&ldquo;{r.text}&rdquo;</p>
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-[var(--color-copper)] flex items-center justify-center text-xs font-semibold text-forge-black">
+                    <div className="w-8 h-8 rounded-full bg-[var(--color-copper)] flex items-center justify-center text-xs font-semibold text-[var(--color-forge-black)]">
                       {r.initials}
                     </div>
                     <div>

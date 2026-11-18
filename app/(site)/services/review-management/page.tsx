@@ -3,6 +3,10 @@ import ServicePageLayout, { type ServicePageData } from "@/components/sections/S
 export const metadata = {
   title: "Review Management",
   description: "Automated SMS + email review requests after every job, with responses handled for you.",
+  openGraph: {
+    title: "Review Management | 404 TradeOS",
+    description: "Automated SMS + email review requests after every job, with responses handled for you.",
+  },
 };
 
 const data: ServicePageData = {

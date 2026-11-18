@@ -1,6 +1,21 @@
 # SESSION-HANDOFF.md
 
-Last updated: 2026-07-05
+Last updated: 2026-08-13
+
+## Completed this session (2026-08-13) — Daily maintenance audit (PR #17)
+
+- Full audit: broken links, SEO metadata, accessibility, performance, brand consistency. `npm run lint`/`tsc --noEmit`/`npm run build` all clean before and after.
+- **Fixed — critical:** `app/(site)/about/page.tsx` `TradeImage` pointed at a non-existent headshot (`public/images/team/billy-showalter.jpg` — `team/` folder doesn't exist). Removed the dead `src` so it falls back to the intended placeholder slot. Real headshot still pending (see below).
+- **Fixed — critical:** `lib/resend.ts` transactional emails hardcoded the deprecated `forge-rust` value `#5a3d1e` (1.99:1 contrast) for field labels/footer text — same failure BRAND.md documents as fixed everywhere else, reintroduced in raw email HTML since it's outside the CSS token system. Now `#998066` (current AA value).
+- **Fixed — moderate, 12 files:** bare Tailwind utilities (`text-forge-black`, `bg-bone`, `border-system-green/30`, `bg-error-red/10`, `border-error-red/30`, `bg-forge-border`) aren't registered in this v4 setup and silently produced no CSS — broke dark-on-copper icon contrast across homepage, pricing, contact, resources, `OSModuleCard`, and all 7 demo dashboards. All wrapped in `var(--color-...)` form. **Worth a repo-wide grep for this pattern periodically** — easy mistake (wrapping `bg-[var(...)]` but forgetting the paired `text-...`), audit only caught the ones existing today.
+- **Fixed — moderate:** added per-page `openGraph` metadata to `/pricing`, `/contact`, and all 6 `/services/*` pages — previously all fell back to the generic homepage OG title/description on social/messaging shares. Homepage itself still has no explicit `metadata` export (inherits root layout default, which is fine) — noted, not changed.
+- Full findings + what was deliberately left alone (off-palette "before" mockup colors, unreferenced stock images, hardcoded `rgba()` gradients in `TradeImage.tsx`/homepage matching current token values) are in the PR #17 description — not duplicated here.
+- Did not touch `app/admin/*`, Supabase, or backend logic per routine scope.
+
+## Pending / not done
+
+- Real headshot photo for Billy Showalter (`public/images/team/billy-showalter.jpg`) still doesn't exist — About page now shows the styled placeholder instead of a broken image, but the actual photo is still owed.
+- Hardcoded `rgba()` overlay gradients in `components/ui/TradeImage.tsx` and `app/(site)/page.tsx` duplicate token values instead of referencing `globals.css` — low urgency (values currently correct) but worth consolidating if `globals.css` tokens ever change.
 
 ## Completed this session (2026-07-05) — Git repo initialization + production cleanup
 

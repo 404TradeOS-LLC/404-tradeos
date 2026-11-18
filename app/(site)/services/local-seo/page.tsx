@@ -3,6 +3,10 @@ import ServicePageLayout, { type ServicePageData } from "@/components/sections/S
 export const metadata = {
   title: "Local SEO",
   description: "Get found in the Google Map Pack and organic results for your trade and service area.",
+  openGraph: {
+    title: "Local SEO | 404 TradeOS",
+    description: "Get found in the Google Map Pack and organic results for your trade and service area.",
+  },
 };
 
 const data: ServicePageData = {

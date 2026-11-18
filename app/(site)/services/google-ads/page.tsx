@@ -3,6 +3,10 @@ import ServicePageLayout, { type ServicePageData } from "@/components/sections/S
 export const metadata = {
   title: "Google Ads Management",
   description: "Managed PPC campaigns targeting emergency and scheduled trade searches in your area.",
+  openGraph: {
+    title: "Google Ads Management | 404 TradeOS",
+    description: "Managed PPC campaigns targeting emergency and scheduled trade searches in your area.",
+  },
 };
 
 const data: ServicePageData = {
